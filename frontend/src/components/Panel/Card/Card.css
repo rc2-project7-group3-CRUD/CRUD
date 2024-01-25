@@ -1,38 +1,44 @@
-.cardContainer{
-    margin-top: 56px;
-    outline: 1px solid red;
-    display: flex;
-    gap:50px;
+.cardContainer {
+  margin-top: 56px;
+  display: flex;
+  gap: 50px;
 }
 
-.cardGallery{
-    border-radius: 20px;
-    width: 250px;
-    height: 250px;
-    border: 1px solid #555;
-    background: #323234;
-    box-shadow: 3px 3px 2px 0px rgba(255, 255, 255, 0.14) inset, 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+.cardGallery {
+  border-radius: 20px;
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+  border: 1px solid #555;
+  background: #323234;
+  box-shadow: 3px 3px 2px 0px rgba(255, 255, 255, 0.14) inset,
+    0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.emptyCard{
-    background-color: var(--color-darkblue);
-    border:none;
-    box-shadow: none;
+.emptyCard {
+  background-color: var(--color-darkblue);
+  border: none;
+  box-shadow: none;
 }
 
-.cardImage{
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
+.cardImage {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.cardImage::after{
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
-    pointer-events: none;
+.cardImage::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1)
+  );
+  pointer-events: none;
+  border-radius: 20px;
 }
