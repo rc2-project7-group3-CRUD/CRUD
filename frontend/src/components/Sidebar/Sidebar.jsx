@@ -1,37 +1,14 @@
-import "./SideBar.css";
-
-import { Dropdown } from "primereact/dropdown";
-import { useState } from "react";
-
+import "./Sidebar.css";
 import { Button } from 'primereact/button';
-        
 
-export const SideBar = () => {
-  const [selectedCity, setSelectedCity] = useState(null);
-  const cities = [
-    { name: "New York", code: "NY" },
-    { name: "Rome", code: "RM" },
-    { name: "London", code: "LDN" },
-    { name: "Istanbul", code: "IST" },
-    { name: "Paris", code: "PRS" },
-  ];
-
+export const Sidebar = () => {
   return (
-    <div>
-      <img src="../../src/assets/LOGO-CRUDO-APP.svg" />
+    <nav className="navContainer">
+      <img src="../../../src/assets/LOGO-CRUDO-APP.svg" className="logo"/>
+
       <div className="card flex justify-content-center">
-        <Dropdown
-          value={selectedCity}
-          onChange={(e) => setSelectedCity(e.value)}
-          options={cities}
-          optionLabel="name"
-          placeholder="Select a City"
-          className="w-full md:w-14rem"
-        />
+            <Button label="+ Añadir nueva entrada" className="addPost"/>
       </div>
-      <div className="card flex justify-content-center">
-            <Button label="Submit" className="boton"/>
-        </div>
-    </div>
+    </nav>
   );
 };
