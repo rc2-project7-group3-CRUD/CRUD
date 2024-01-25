@@ -6,10 +6,11 @@ export const Card = () => {
       <article className="cardGallery">
         <div className="cardImage">
           <img
-            className="cardGallery"
+            className="image"
             src="../../../../public/imagen-muestra.jpg"
             alt="imagen destacada"
           />
+          <h3>Nombre de la entrada</h3>
         </div>
       </article>
       <article className="cardGallery emptyCard"></article>
