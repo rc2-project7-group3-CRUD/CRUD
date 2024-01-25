@@ -4,10 +4,9 @@ import "./Home.css";
 
 export const Home = () => {
   return (
-    <main className='mainContainer'>
-        <Sidebar />
-        
-        <Panel />
+    <main className="mainContainer">
+      <Sidebar />
+      <Panel />
     </main>
-  )
-}
+  );
+};
