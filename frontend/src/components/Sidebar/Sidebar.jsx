@@ -40,7 +40,10 @@ export const Sidebar = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <label htmlFor="cardUrl"> Url</label>
+          <label htmlFor="cardUrl">
+            <i className="pi pi-link" /> Url
+          </label>
+
           <InputText
             id="cardUrl"
             value={url}
