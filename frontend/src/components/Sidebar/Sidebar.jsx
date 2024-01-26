@@ -7,19 +7,22 @@ import { InputText } from "primereact/inputtext";
 
 export const Sidebar = () => {
   const [visible, setVisible] = useState(false);
-  const [value, setValue] = useState("");
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
+  const [description, setDescription] = useState("");
+  const [author, setAuthor] = useState("");
   return (
     <>
-    <nav className="navContainer">
-      <img src="../../../src/assets/LOGO-CRUDO-APP.svg" className="logo" />
+      <nav className="navContainer">
+        <img src="../../../src/assets/LOGO-CRUDO-APP.svg" className="logo" />
 
-      <div className="card flex justify-content-center">
-        <Button
-          label="+ Añadir nueva entrada"
-          className="addPost"
-          onClick={() => setVisible(true)}
-        />
-      </div>
+        <div className="card flex justify-content-center">
+          <Button
+            label="+ Añadir nueva entrada"
+            className="addPost"
+            onClick={() => setVisible(true)}
+          />
+        </div>
       </nav>
       <Dialog
         className=" modal"
@@ -34,20 +37,20 @@ export const Sidebar = () => {
           <label htmlFor="cardTitle"> Título </label>
           <InputText
             id="cardTitle"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <label htmlFor="cardUrl"> Url</label>
           <InputText
             id="cardUrl"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
           />
           <label htmlFor="cardDescription"> Descripción </label>
           <InputTextarea
             id="cardDescription"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             rows={5}
             cols={30}
           />
@@ -56,8 +59,8 @@ export const Sidebar = () => {
               <label htmlFor="cardAuthor"> Autor </label>
               <InputText
                 id="cardAuthor"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+                value={author}
+                onChange={(e) => setAuthor(e.target.value)}
               />
             </section>
             <Button
@@ -68,6 +71,6 @@ export const Sidebar = () => {
           </div>
         </form>
       </Dialog>
-      </>
+    </>
   );
 };
