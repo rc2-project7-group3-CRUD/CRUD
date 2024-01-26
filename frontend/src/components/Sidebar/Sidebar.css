@@ -22,7 +22,13 @@
 }
 
 .p-dialog-header{
-    position:absolute;
+    position: relative;
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon{
+    position: absolute;
+    right: 10px;
+    top: 5px;
 }
 
 .p-dialog .p-dialog-header{
