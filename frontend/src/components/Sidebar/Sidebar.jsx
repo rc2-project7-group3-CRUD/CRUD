@@ -31,16 +31,18 @@ export const Sidebar = () => {
         onHide={() => setVisible(false)}
       >
         <header className="cardHeader">
-          <h2> Añade una nueva entrada</h2>
+          <p> Añade una nueva entrada</p>
         </header>
-        
-        <form className="cardForm">
 
-          <label htmlFor="cardTitle" className="cardTitle"> Título </label>
+        <form className="cardForm">
+          <label htmlFor="cardTitle" className="cardTitle">
+            Título
+          </label>
           <InputText
             id="cardTitle"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            required
           />
 
           <label htmlFor="cardUrl" className="cardUrl">
@@ -52,13 +54,16 @@ export const Sidebar = () => {
             onChange={(e) => setUrl(e.target.value)}
           />
 
-          <label htmlFor="cardDescription" className="cardDescription"> Descripción </label>
+          <label htmlFor="cardDescription" className="cardDescription">
+            Descripción
+          </label>
           <InputTextarea
             id="cardDescription"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={5}
             cols={30}
+            required
           />
 
           <div className="footerCard">
