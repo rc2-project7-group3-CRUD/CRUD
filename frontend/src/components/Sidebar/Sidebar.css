@@ -7,18 +7,19 @@
 
 .logo{
     margin-bottom: 25px;
+    width: 80%;
 }
 
 .addPost{
     background-color: var(--color-green);
-    padding: 10px 18px;
+    padding: 0.8rem 1.2rem;
     color:var(--color-darkblue);
     border: none;
 }
 
 .card .p-button-label {
-    font-weight: 400;
-    font-size: 21px;
+    font-weight: 500;
+    font-size: 1rem;
 }
 
 .p-dialog-header{
@@ -42,6 +43,10 @@
 .p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover{
     background: none;
     border: 2px solid white;
+}
+
+.p-dialog-content{
+    border-radius: 18px;
 }
 
 .cardForm{
