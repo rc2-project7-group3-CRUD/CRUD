@@ -31,7 +31,7 @@ export const Sidebar = () => {
         onHide={() => setVisible(false)}
       >
         <header className="cardHeader">
-          <h2> Añade una nueva entrada</h2>
+          <h2 className="cardHeaderTitle"> Añade una nueva entrada</h2>
         </header>
         
         <form className="cardForm">

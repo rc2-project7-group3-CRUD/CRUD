@@ -56,9 +56,16 @@
 }
 
 .cardHeader{
-    height: 140px;
+    height: 130px;
     background: linear-gradient(273deg, #08101B 1%, #289485 67.64%, #A1A26D 101.97%);
     top: 0;
+    padding: 52px;
+}
+
+.cardHeaderTitle{
+    color:white;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .footerCard{
