@@ -25,31 +25,34 @@ export const Sidebar = () => {
         </div>
       </nav>
       <Dialog
-        className=" modal"
+        className="modal"
         visible={visible}
         style={{ width: "50vw" }}
         onHide={() => setVisible(false)}
       >
+        <header className="cardHeader">
+          <h2> Añade una nueva entrada</h2>
+        </header>
+        
         <form className="cardForm">
-          <header>
-            <h2> Añade una nueva entrada</h2>
-          </header>
-          <label htmlFor="cardTitle"> Título </label>
+
+          <label htmlFor="cardTitle" className="cardTitle"> Título </label>
           <InputText
             id="cardTitle"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <label htmlFor="cardUrl">
+
+          <label htmlFor="cardUrl" className="cardUrl">
             <i className="pi pi-link" /> Url
           </label>
-
           <InputText
             id="cardUrl"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
           />
-          <label htmlFor="cardDescription"> Descripción </label>
+
+          <label htmlFor="cardDescription" className="cardDescription"> Descripción </label>
           <InputTextarea
             id="cardDescription"
             value={description}
@@ -57,6 +60,7 @@ export const Sidebar = () => {
             rows={5}
             cols={30}
           />
+
           <div className="footerCard">
             <section className="authorCard">
               <label htmlFor="cardAuthor"> Autor </label>

@@ -16,13 +16,63 @@
     border: none;
 }
 
-.p-button-label {
+.card .p-button-label {
     font-weight: 400;
     font-size: 21px;
+}
+
+.p-dialog-header{
+    position:absolute;
+}
+
+.p-dialog .p-dialog-header{
+    background: none;
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon{
+    color:white;
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover{
+    background: none;
+    border: 2px solid white;
 }
 
 .cardForm{
     display: flex;
     flex-direction: column;
     margin: 0px 52px 48px 52px;
+}
+
+.cardHeader{
+    height: 140px;
+    background: linear-gradient(273deg, #08101B 1%, #289485 67.64%, #A1A26D 101.97%);
+    top: 0;
+}
+
+.footerCard{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardTitle, .cardUrl, .cardDescription, .footerCard {
+    margin-top: 15px;
+}
+
+.sendPost{
+    background-color: var(--color-blue);
+    border: none;
+    padding: 10px 20px;
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.authorCard{
+    display: flex;
+    flex-direction: column;
+}
+
+.footerCard .p-button-label {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 400;
 }
