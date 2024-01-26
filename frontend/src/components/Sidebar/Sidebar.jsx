@@ -9,6 +9,7 @@ export const Sidebar = () => {
   const [visible, setVisible] = useState(false);
   const [value, setValue] = useState("");
   return (
+    <>
     <nav className="navContainer">
       <img src="../../../src/assets/LOGO-CRUDO-APP.svg" className="logo" />
 
@@ -19,34 +20,54 @@ export const Sidebar = () => {
           onClick={() => setVisible(true)}
         />
       </div>
+      </nav>
       <Dialog
         className=" modal"
-        header="Header"
         visible={visible}
         style={{ width: "50vw" }}
         onHide={() => setVisible(false)}
       >
-        <form>
+        <form className="cardForm">
+          <header>
+            <h2> Añade una nueva entrada</h2>
+          </header>
+          <label htmlFor="cardTitle"> Título </label>
           <InputText
-            className="cardTitle"
+            id="cardTitle"
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
-
+          <label htmlFor="cardUrl"> Url</label>
+          <InputText
+            id="cardUrl"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+          <label htmlFor="cardDescription"> Descripción </label>
           <InputTextarea
-            className="cardDescription"
+            id="cardDescription"
             value={value}
             onChange={(e) => setValue(e.target.value)}
             rows={5}
             cols={30}
           />
-          <InputText
-            className="cardAuthor"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          />
+          <div className="footerCard">
+            <section className="authorCard">
+              <label htmlFor="cardAuthor"> Autor </label>
+              <InputText
+                id="cardAuthor"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+              />
+            </section>
+            <Button
+              label="Enviar"
+              className="sendPost"
+              onClick={() => setVisible(true)}
+            />
+          </div>
         </form>
       </Dialog>
-    </nav>
+      </>
   );
 };
