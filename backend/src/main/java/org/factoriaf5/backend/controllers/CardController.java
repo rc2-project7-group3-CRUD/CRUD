@@ -1,5 +1,6 @@
 package org.factoriaf5.backend.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.factoriaf5.backend.persistence.Card;
@@ -18,12 +19,12 @@ public class CardController {
 
     @GetMapping("/cards")
     public List<CardResponse> getCards() {
-        return List.of(
-                new CardResponse(1L, "El Señor de los Anillos", "Peter Jackson", "dfsaf", "dsfdsf"),
-                new CardResponse(2L, "Pinocho", "Walt Disney", "sadasd", "sdasda")
-
-        );
-
+        List<CardResponse> cards = new ArrayList<CardResponse>();
+        List<Card> cardsInDatabase = repository.findAll();
+        for (Card card : cardsInDatabase) {
+            cards.add(new CardResponse(card.getId(), card.getTitle(), card.getUrl(), card.getDescription(), card.getAuthor()));
+        }
+        return cards;
     }
 
     @PostMapping("/cards")

@@ -7,7 +7,8 @@ public class CardResponse {
         private String url;
         private String description;
         private String author;
-    
+
+        //MÉTODO CONSTRUCTOR PARA CADA CARD
         public CardResponse(Long id, String title, String url, String description, String author) {
             this.id = id;
             this.title = title;
@@ -16,7 +17,8 @@ public class CardResponse {
             this.author= author;
 
         }
-     /*GETTERS: Llamada a los datos del constructor, a traves de la funcion coge los datos uno a uno */
+
+        /*GETTERS: Llamada a los datos del constructor, a traves de la funcion coge los datos uno a uno */
         public String getTitle() {
             return title;
         }
