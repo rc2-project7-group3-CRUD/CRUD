@@ -61,5 +61,14 @@
 
 .cardHover{
     background: var(--color-darkblue);
+    opacity: 80%;
     position: absolute;
+    color :white;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 250px;
+    outline: 7px solid var(--color-blue);
+    border-radius: 20px;
 }
