@@ -18,14 +18,17 @@
 
 .cardImage {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 }
 
 .image {
     border-radius: 20px;
-    width: 250px;
-    transform: translateY(-180px);
+    max-width: 250px;    
+    /* transform: translateY(-180px); */
 }
 
 .cardImage::after {
@@ -33,8 +36,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 250px;
+    height: 250px;
     background: linear-gradient(0deg, #323234 0%, #323234 35.8%, rgba(50, 50, 52, 0.00) 70.2%);
     pointer-events: none;
     border-radius: 20px;
@@ -45,4 +48,11 @@
     background-color: var(--color-darkblue);
     border: none;
     box-shadow: none;
+}
+
+.cardName{
+    color: white;
+    position: absolute;
+    z-index: 1;
+    margin: 0 20px 20px 20px;
 }
