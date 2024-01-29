@@ -41,7 +41,6 @@ public class CardController {
     public CardController(@Autowired CardRepository repository) {
         this.repository = repository;
     }
-
 }
 
 
