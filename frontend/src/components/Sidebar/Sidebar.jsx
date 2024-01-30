@@ -4,6 +4,7 @@ import { Dialog } from "primereact/dialog";
 import { useState } from "react";
 import { InputTextarea } from "primereact/inputtextarea";
 import { InputText } from "primereact/inputtext";
+import { Link } from "react-router-dom";
 
 
 export const Sidebar = () => {
@@ -17,7 +18,9 @@ export const Sidebar = () => {
   return (
     <>
       <nav className="navContainer">
+        <Link to= "/">
         <img src="../../../src/assets/LOGO-CRUDO-APP.svg" className="logo" />
+        </Link>
 
         <div className="card flex justify-content-center">
           <Button
