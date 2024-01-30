@@ -2,6 +2,7 @@ import { useState, } from "react";
 import "./Card.css";
 import { IconEdit } from "../../svg/IconEdit";
 import { IconDelete } from "../../svg/IconDelete";
+import { Link } from "react-router-dom";
 
 export const Card = ({ entrada }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -34,7 +35,8 @@ export const Card = ({ entrada }) => {
         </div>
         {isHovered && (
           <div className="cardHover">
-            <a className="readMoreButton">LEER MÁS</a>
+          
+            <Link to={`/article/${entrada.id}`} className="readMoreButton">LEER MAS</Link>
             <ul className="cardIcons">
               <li>
                 <IconEdit />
