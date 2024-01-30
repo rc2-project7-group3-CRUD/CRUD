@@ -8,8 +8,9 @@ export function useFetch(url) {
     if(needsReload){
     fetch(url)
       .then((response) => response.json())
-      .then((data) => {setData(data);
-      setNeedsReload(false);
+      .then((data) =>{
+        setData(data);
+        setNeedsReload(false);
     });
     }
 }, [needsReload]);

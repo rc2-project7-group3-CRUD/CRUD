@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Card.css";
 import { IconEdit } from "../../svg/IconEdit";
 import { IconDelete } from "../../svg/IconDelete";
-import { useFetch } from "../../../useFetch";
+// import { useFetch } from "../../../useFetch";
 
 export const Card = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [needsReload, setNeedsReload] = useState(true);
+  const [titles, setTitles] = useState([]);
+
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -15,7 +18,19 @@ export const Card = () => {
     setIsHovered(false);
   };
 
-  const { data } = useFetch("http://localhost:8080/cards");
+  // const { data } = useFetch("http://localhost:8080/cards");
+  const URL = "http://localhost:8080/cards";
+
+  useEffect(() => {
+    if (needsReload) {
+      fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+          setTitles(data);
+          setNeedsReload(false);
+        });
+    }
+  }, [needsReload]);
 
   return (
     <section className="cardContainer">
@@ -26,8 +41,8 @@ export const Card = () => {
       >
         <div className="cardImage">
           <ul className="cardName">
-            {data.map((card) => (
-              <li key={card.id}>{`${card.title} (${card.id})`}</li>
+            {titles.map((card) => (
+              <li key={card.id}>{`${card.title}`}</li>
             ))}
           </ul>
 
