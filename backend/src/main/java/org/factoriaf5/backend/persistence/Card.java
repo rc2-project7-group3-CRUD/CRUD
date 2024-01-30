@@ -7,9 +7,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
+// "@Table" para crear una tabla "cards" en la BASE DE DATOS
 @Table(name="cards")
     public class Card {
         @Id
+        // Esto genera el id automáticamente
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         Long id;
         String title;
@@ -37,11 +39,15 @@ import jakarta.persistence.Table;
             return author;
         }
         
+        // AQUÍ SÍ ES NECESARIO el constructor vacío para la base de datos
         public Card() {
         }
         
-        public Card(Long id, String title, String url, String description, String author) {
-            this.id = id;
+        // ¿¿¿ Es posible que tengamos que quitar el "Long id" aquí ???
+        // porque con @GeneratedValue se genera el id automáticamente
+        // con id quedaría "public Card(Long id, String title, String url, String description, String author)""
+        public Card(String title, String url, String description, String author) {
+            // this.id = id;
             this.title = title;
             this.url = url;
             this.description = description;

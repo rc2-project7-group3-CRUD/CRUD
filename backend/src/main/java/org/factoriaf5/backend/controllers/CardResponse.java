@@ -1,31 +1,33 @@
 package org.factoriaf5.backend.controllers;
 
 public class CardResponse {
-    
-        private String title;
+        // PROPIEDADES DEL OBJETO "card"
         private Long id;
+        private String title;
         private String url;
         private String description;
         private String author;
 
-        //MÉTODO CONSTRUCTOR PARA CADA CARD
+        //MÉTODO CONSTRUCTOR PARA CADA OBJETO "card"
         public CardResponse(Long id, String title, String url, String description, String author) {
             this.id = id;
             this.title = title;
             this.url = url;
             this.description=description;
             this.author= author;
-
         }
 
         /*GETTERS: Llamada a los datos del constructor, a traves de la funcion coge los datos uno a uno */
-        public String getTitle() {
-            return title;
-        }
-    
         public Long getId() {
             return id;
         }
+
+        /* Si escribo getTitulo en lugar de getTitle 
+            en el JSON me mostrará "Titulo" = "loremipsum"
+            en lugar de "Title" = "loremipsum" */
+        public String getTitle() {
+            return title;
+        }    
     
         public String getUrl(){
             return url;
