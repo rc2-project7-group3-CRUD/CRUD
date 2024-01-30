@@ -1,7 +1,6 @@
 .cardContainer {
-    margin-top: 56px;
     display: flex;
-    gap: 50px;
+    
     position: relative;
 }
 

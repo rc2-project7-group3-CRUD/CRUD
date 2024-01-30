@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, } from "react";
 import "./Card.css";
 import { IconEdit } from "../../svg/IconEdit";
 import { IconDelete } from "../../svg/IconDelete";
 // import { useFetch } from "../../../useFetch";
 
-export const Card = () => {
+export const Card = ({ entrada }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [needsReload, setNeedsReload] = useState(true);
-  const [titles, setTitles] = useState([]);
+  // const [needsReload, setNeedsReload] = useState(true);
+  // const [cards, setCards] = useState([]);
 
 
   const handleMouseEnter = () => {
@@ -19,18 +19,18 @@ export const Card = () => {
   };
 
   // const { data } = useFetch("http://localhost:8080/cards");
-  const URL = "http://localhost:8080/cards";
+  // const URL = "http://localhost:8080/cards";
 
-  useEffect(() => {
-    if (needsReload) {
-      fetch(URL)
-        .then((response) => response.json())
-        .then((data) => {
-          setTitles(data);
-          setNeedsReload(false);
-        });
-    }
-  }, [needsReload]);
+  // useEffect(() => {
+  //   if (needsReload) {
+  //     fetch(URL)
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         setCards(data);
+  //         setNeedsReload(false);
+  //       });
+  //   }
+  // }, [needsReload]);
 
   return (
     <section className="cardContainer">
@@ -41,9 +41,7 @@ export const Card = () => {
       >
         <div className="cardImage">
           <ul className="cardName">
-            {titles.map((card) => (
-              <li key={card.id}>{`${card.title}`}</li>
-            ))}
+            <li>{`${entrada.title}`}</li>
           </ul>
 
           <img
@@ -65,9 +63,6 @@ export const Card = () => {
             </ul>
           </div>
         )}
-      </article>
-      <article className="cardGallery emptyCard">
-        <p className="emptyCardButton">+</p>
       </article>
     </section>
   );
