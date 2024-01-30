@@ -2,13 +2,9 @@ import { useState, } from "react";
 import "./Card.css";
 import { IconEdit } from "../../svg/IconEdit";
 import { IconDelete } from "../../svg/IconDelete";
-// import { useFetch } from "../../../useFetch";
 
 export const Card = ({ entrada }) => {
   const [isHovered, setIsHovered] = useState(false);
-  // const [needsReload, setNeedsReload] = useState(true);
-  // const [cards, setCards] = useState([]);
-
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -17,20 +13,6 @@ export const Card = ({ entrada }) => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-
-  // const { data } = useFetch("http://localhost:8080/cards");
-  // const URL = "http://localhost:8080/cards";
-
-  // useEffect(() => {
-  //   if (needsReload) {
-  //     fetch(URL)
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         setCards(data);
-  //         setNeedsReload(false);
-  //       });
-  //   }
-  // }, [needsReload]);
 
   return (
     <section className="cardContainer">

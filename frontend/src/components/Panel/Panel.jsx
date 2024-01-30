@@ -19,16 +19,17 @@ export const Panel = () => {
     }
   }, [needsReload]);
 
+
   return (
     <div className="panelContainer">
       <h2 className="textLastPosts">Últimas entradas:</h2>
       <div className="cardsContainer">
-        {cards.map ((card, index) => (
-        <Card key={index} entrada={card} />
-      ))} 
         <article className="cardGallery emptyCard">
           <p className="emptyCardButton">+</p>
         </article>
+        {[...cards].reverse().map ((card, index) => (
+        <Card key={index} entrada={card} />
+      ))} 
       </div>
     </div>
   )
