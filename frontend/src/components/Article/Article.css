@@ -1,14 +1,15 @@
 .articleContainer {
-  width: 80%;
-  background-color: #c7c7c7;
-  padding: 85px 40px;
+    width: 80%;
+    background-color: #c7c7c7;
+    padding: 85px 40px;
 }
 
-.titleArticle{
+.titleArticle {
     color: var(--color-darkblue);
-    font-size:50px;
+    font-size: 50px;
 
 }
+
 .urlContainer {
     display: flex;
     color: #104684;
@@ -17,9 +18,10 @@
     font-size: 25px;
 
 }
- .linkurl{
+
+.linkurl {
     font-size: 25px;
- }
+}
 
 
 .authorArticle {
@@ -27,13 +29,12 @@
     font-weight: bold;
     margin-top: 70px;
 }
+
 .dateArticle {
     font-size: 15px;
 }
 
 .descriptionArticle {
-    font-size:15px;
-    margin-top:30px;
+    font-size: 15px;
+    margin-top: 30px;
 }
-
-

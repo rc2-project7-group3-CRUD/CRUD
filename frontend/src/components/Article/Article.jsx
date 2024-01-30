@@ -1,15 +1,35 @@
 import { Sidebar } from "../Sidebar/Sidebar";
 /*import { useParams } from "react-router-dom";*/
 import "./Article.css";
+import { useEffect, useState } from "react";
+import { useFetch } from "../../useFetch";
 
 export const Article = () => {
   /*const { cardId } = useParams();*/
+  const [cards, setCards] = useState([]);
+  const [needsReload, setNeedsReload] = useState(true);
+  const { data } = useFetch(`http://localhost:8080/cards`);
+  const { title, url, description, author } = data;
+
+  useEffect(() => {
+    if (needsReload) {
+      fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+          setCards(data);
+          setNeedsReload(false);
+        });
+    }
+  }, [needsReload]);
+
 
   return (
     <section className="mainContainer">
       <Sidebar />
       <div className="articleContainer">
-        <h1 className="titleArticle">Titulo de la entrada</h1>
+        {cards.map((card) => (
+        <h1 className="titleArticle" key={card.id}>{`${card.title}`}</h1>
+        ))}
         <div className="urlContainer">
         <i className="pi pi-link linkurl" />
         <p className="urlArticle">URL</p>
