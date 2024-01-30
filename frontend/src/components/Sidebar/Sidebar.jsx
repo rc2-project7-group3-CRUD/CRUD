@@ -5,12 +5,15 @@ import { useState } from "react";
 import { InputTextarea } from "primereact/inputtextarea";
 import { InputText } from "primereact/inputtext";
 
+
 export const Sidebar = () => {
   const [visible, setVisible] = useState(false);
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
   const [author, setAuthor] = useState("");
+  
+  
   return (
     <>
       <nav className="navContainer">
