@@ -9,11 +9,37 @@ import { Link } from "react-router-dom";
 
 export const Sidebar = () => {
   const [visible, setVisible] = useState(false);
-  const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
-  const [description, setDescription] = useState("");
-  const [author, setAuthor] = useState("");
-  
+  const [newTitle, setNewTitle] = useState("");
+  const [newUrl, setNewUrl] = useState("");
+  const [newDescription, setNewDescription] = useState("");
+  const [newAuthor, setNewAuthor] = useState("");
+  const [newCard, setNewCard] = useState("");
+  const [needsReload, setNeedsReload] = useState(true);
+
+  const postCard = (e) => {
+    e.preventDefault();
+
+  const url = "http://localhost:8080/cards";
+
+
+  const options = {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title: newCard })
+  };
+  fetch(url, options)
+    .then(response => {
+      if (response.ok) {
+        setNewCard("");
+        setNewTitle("");
+        setNewUrl("");
+        setNewAuthor("");
+        setNewDescription("");
+        setNeedsReload(true);
+      }
+    })
+}
+
   
   return (
     <>
@@ -40,14 +66,15 @@ export const Sidebar = () => {
           <p> Añade una nueva entrada</p>
         </header>
 
-        <form className="cardForm">
+        <form className="cardForm" onSubmit={postCard}>
           <label htmlFor="cardTitle" className="cardTitle">
             Título
           </label>
           <InputText
             id="cardTitle"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+            // value={newMovieTitle} onChange={e => setNewMovieTitle(e.target.value)}
             required
           />
 
@@ -56,8 +83,8 @@ export const Sidebar = () => {
           </label>
           <InputText
             id="cardUrl"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
+            value={newUrl}
+            onChange={(e) => setNewUrl(e.target.value)}
           />
 
           <label htmlFor="cardDescription" className="cardDescription">
@@ -65,8 +92,8 @@ export const Sidebar = () => {
           </label>
           <InputTextarea
             id="cardDescription"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={newDescription}
+            onChange={(e) => setNewDescription(e.target.value)}
             rows={5}
             cols={30}
             required
@@ -77,14 +104,17 @@ export const Sidebar = () => {
               <label htmlFor="cardAuthor"> Autor </label>
               <InputText
                 id="cardAuthor"
-                value={author}
-                onChange={(e) => setAuthor(e.target.value)}
+                value={newAuthor}
+                onChange={(e) => setNewAuthor(e.target.value)}
               />
             </section>
             <Button
               label="Enviar"
               className="sendPost"
               onClick={() => setVisible(true)}
+              // disabled={newCard === ""}
+              type='submit'
+              value="Create" 
             />
           </div>
         </form>
