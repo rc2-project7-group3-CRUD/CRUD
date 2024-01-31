@@ -66,7 +66,7 @@ export const Card = ({ entrada }) => {
 
 Card.propTypes = {
   entrada: PropTypes.shape({
-    entrada: PropTypes.string.isRequired,
+    entrada: PropTypes.string,
     title: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   }).isRequired,
