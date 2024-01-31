@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
-export function useFetch(url) {
+const url = "http://localhost:8080/cards";
+
+export function useFetch() {
   const [data, setData] = useState(null);
   const [needsReload, setNeedsReload] = useState(true);
 

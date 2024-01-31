@@ -1,13 +1,13 @@
 .navContainer {
     min-height: 100vh;
-    width: 20%;
+    width: 18%;
     background-color: var(--color-darkblue);
-    padding: 40px 60px;
+    padding: 40px 50px;
 }
 
 .logo {
     margin-bottom: 25px;
-    width: 80%;
+    width: 100%;
 }
 
 .addPost {
