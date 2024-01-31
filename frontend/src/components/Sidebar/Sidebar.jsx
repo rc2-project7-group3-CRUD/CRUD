@@ -18,27 +18,35 @@ export const Sidebar = () => {
 
   const postCard = (e) => {
     e.preventDefault();
-
-  const url = "http://localhost:8080/cards";
-
-
-  const options = {
-    method: 'POST',
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title: newCard })
+  
+    const url = "http://localhost:8080/cards";
+  
+    const options = {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: newTitle,
+        url: newUrl,
+        description: newDescription,
+        author: newAuthor,
+        card: newCard
+      })
+    };
+  
+    fetch(url, options)
+      .then(response => {
+        if (response.ok) {
+          setNewCard("");
+          setNewTitle("");
+          setNewUrl("");
+          setNewAuthor("");
+          setNewDescription("");
+          setVisible(false);
+          setNeedsReload(true);
+        }
+      })
   };
-  fetch(url, options)
-    .then(response => {
-      if (response.ok) {
-        setNewCard("");
-        setNewTitle("");
-        setNewUrl("");
-        setNewAuthor("");
-        setNewDescription("");
-        setNeedsReload(true);
-      }
-    })
-}
+  
 
   
   return (
