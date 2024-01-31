@@ -54,26 +54,50 @@ export const Card = ({ entrada }) => {
     setIsHovered(false);
   };
 
-  const handleDeleteClick = () => {
-    // Realizar la solicitud DELETE al backend
-    fetch(`/cards/${entrada.id}`, {
+  // const handleDeleteClick = () => {
+  //   // Realizar la solicitud DELETE al backend
+  //   fetch(`/cards/${entrada.id}`, {
+  //     method: "DELETE",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((response) => {
+  //       if (response.ok) {
+  //         console.log("Entrada eliminada con éxito.");
+  //       } else {
+  //         console.error("Error al eliminar la entrada. Estado de respuesta:", response.status);
+  //         response.text().then((errorText) => {
+  //           console.error("Mensaje de error:", errorText);
+  //         });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error en la solicitud DELETE:", error);
+  //     });
+  // };
+  
+  const deleteCard = (e) => {
+    e.preventDefault();
+
+    const url = `http://localhost:8080/cards/${entrada.id}`;
+
+    const options = {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          // Si la solicitud fue exitosa, puedes realizar alguna acción, como actualizar la interfaz de usuario o mostrar un mensaje de confirmación.
-          console.log("Entrada eliminada con éxito.");
-        } else {
-          // Si la solicitud no fue exitosa, maneja el error de acuerdo a tus necesidades.
-          console.error("Error al eliminar la entrada.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error en la solicitud DELETE:", error);
+      headers: { "Content-Type": "application/json" },
+    };
+
+    fetch(url, options).then((response) => {
+      if (response.ok) {        
+        console.log("Entrada eliminada con éxito.");
+        window.location.reload();
+      } else {
+        console.error("Error al eliminar la entrada. Estado de respuesta:", response.status);
+        response.text().then((errorText) => {
+        console.error("Mensaje de error:", errorText);
       });
+    }
+    });
   };
 
   return (
@@ -104,7 +128,7 @@ export const Card = ({ entrada }) => {
                 <IconEdit />
               </li>
               <li>
-                <button onClick={handleDeleteClick}>
+                <button onClick={deleteCard}>
                   <IconDelete />
                 </button>
               </li>
