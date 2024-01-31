@@ -53,29 +53,6 @@ export const Card = ({ entrada }) => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-
-  // const handleDeleteClick = () => {
-  //   // Realizar la solicitud DELETE al backend
-  //   fetch(`/cards/${entrada.id}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         console.log("Entrada eliminada con éxito.");
-  //       } else {
-  //         console.error("Error al eliminar la entrada. Estado de respuesta:", response.status);
-  //         response.text().then((errorText) => {
-  //           console.error("Mensaje de error:", errorText);
-  //         });
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error en la solicitud DELETE:", error);
-  //     });
-  // };
   
   const deleteCard = (e) => {
     e.preventDefault();
@@ -127,10 +104,8 @@ export const Card = ({ entrada }) => {
               <li>
                 <IconEdit />
               </li>
-              <li>
-                <button onClick={deleteCard}>
+              <li onClick={deleteCard}>
                   <IconDelete />
-                </button>
               </li>
             </ul>
           </div>
