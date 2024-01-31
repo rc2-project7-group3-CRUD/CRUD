@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import "./Card.css";
 import { IconEdit } from "../../svg/IconEdit";
 import { IconDelete } from "../../svg/IconDelete";
@@ -10,7 +10,34 @@ export const Card = ({ entrada }) => {
   const [randomImageIndex, setRandomImageIndex] = useState(0); // Estado para almacenar el índice de la imagen aleatoria
 
   // Nombres de las imágenes en la carpeta public/images
-  const imageNames = ["imagen1.jpg", "imagen2.jpg", "imagen3.jpg", "imagen4.jpg", "imagen5.jpg", "imagen6.jpg", "imagen7.jpg", "imagen8.jpg", "imagen9.jpg", "imagen10.jpg", "imagen11.jpg", "imagen12.jpg", "imagen13.jpg", "imagen14.jpg", "imagen15.jpg", "imagen16.jpg", "imagen17.jpg", "imagen18.jpg", "imagen19.jpg", "imagen20.jpg", "imagen21.jpg", "imagen22.jpg", "imagen23.jpg", "imagen24.jpg", "imagen25.jpg", "imagen26.jpg" ];
+  const imageNames = [
+    "imagen1.jpg",
+    "imagen2.jpg",
+    "imagen3.jpg",
+    "imagen4.jpg",
+    "imagen5.jpg",
+    "imagen6.jpg",
+    "imagen7.jpg",
+    "imagen8.jpg",
+    "imagen9.jpg",
+    "imagen10.jpg",
+    "imagen11.jpg",
+    "imagen12.jpg",
+    "imagen13.jpg",
+    "imagen14.jpg",
+    "imagen15.jpg",
+    "imagen16.jpg",
+    "imagen17.jpg",
+    "imagen18.jpg",
+    "imagen19.jpg",
+    "imagen20.jpg",
+    "imagen21.jpg",
+    "imagen22.jpg",
+    "imagen23.jpg",
+    "imagen24.jpg",
+    "imagen25.jpg",
+    "imagen26.jpg",
+  ];
 
   useEffect(() => {
     // Genera un número aleatorio entre 0 y la longitud del array de imágenes
@@ -25,6 +52,28 @@ export const Card = ({ entrada }) => {
 
   const handleMouseLeave = () => {
     setIsHovered(false);
+  };
+
+  const handleDeleteClick = () => {
+    // Realizar la solicitud DELETE al backend
+    fetch(`/cards/${entrada.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Si la solicitud fue exitosa, puedes realizar alguna acción, como actualizar la interfaz de usuario o mostrar un mensaje de confirmación.
+          console.log("Entrada eliminada con éxito.");
+        } else {
+          // Si la solicitud no fue exitosa, maneja el error de acuerdo a tus necesidades.
+          console.error("Error al eliminar la entrada.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud DELETE:", error);
+      });
   };
 
   return (
@@ -47,14 +96,17 @@ export const Card = ({ entrada }) => {
         </div>
         {isHovered && (
           <div className="cardHover">
-          
-            <Link to={`/article/${entrada.id}`} className="readMoreButton">LEER MAS</Link>
+            <Link to={`/article/${entrada.id}`} className="readMoreButton">
+              LEER MAS
+            </Link>
             <ul className="cardIcons">
               <li>
                 <IconEdit />
               </li>
               <li>
-                <IconDelete />
+                <button onClick={handleDeleteClick}>
+                  <IconDelete />
+                </button>
               </li>
             </ul>
           </div>
