@@ -4,11 +4,16 @@ import { IconEdit } from "../../svg/IconEdit";
 import { IconDelete } from "../../svg/IconDelete";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import EditCardDialog from "../../EditCardDialog/EditCardDialog";
 
 export const Card = ({ entrada }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [randomImageIndex, setRandomImageIndex] = useState(0); // Estado para almacenar el índice de la imagen aleatoria
-
+  const [visible, setVisible] = useState(false);
+  const [needsReload, setNeedsReload] = useState(true);
+  const [editTitle, setEditTitle] = useState("");
+  const [editUrl, setEditUrl] = useState("");
+  const [editDescription, setEditDescription] = useState("");
   // Nombres de las imágenes en la carpeta public/images
   const imageNames = [
     "imagen1.jpg",
@@ -53,7 +58,7 @@ export const Card = ({ entrada }) => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-  
+
   const deleteCard = (e) => {
     e.preventDefault();
 
@@ -65,15 +70,44 @@ export const Card = ({ entrada }) => {
     };
 
     fetch(url, options).then((response) => {
-      if (response.ok) {        
+      if (response.ok) {
         console.log("Entrada eliminada con éxito.");
         window.location.reload();
       } else {
-        console.error("Error al eliminar la entrada. Estado de respuesta:", response.status);
+        console.error(
+          "Error al eliminar la entrada. Estado de respuesta:",
+          response.status
+        );
         response.text().then((errorText) => {
-        console.error("Mensaje de error:", errorText);
-      });
-    }
+          console.error("Mensaje de error:", errorText);
+        });
+      }
+    });
+  };
+
+  const editCard = (e) => {
+    e.preventDefault();
+
+    const url = `http://localhost:8080/cards/${entrada.id}`;
+
+    const options = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: editTitle,
+        url: editUrl,
+        description: editDescription,
+      }),
+    };
+
+    fetch(url, options).then((response) => {
+      if (response.ok) {
+        setEditTitle("");
+        setEditUrl("");
+        setEditDescription("");
+        setVisible(false);
+        setNeedsReload(true);
+      }
     });
   };
 
@@ -101,13 +135,24 @@ export const Card = ({ entrada }) => {
               LEER MAS
             </Link>
             <ul className="cardIcons">
-              <li>
+              <li onClick={editCard}>
                 <IconEdit />
               </li>
               <li onClick={deleteCard}>
-                  <IconDelete />
+                <IconDelete />
               </li>
             </ul>
+            <EditCardDialog
+              visible={visible}
+              onHide={() => setVisible(false)}
+              onSubmit={editCard}
+              editTitle={editTitle}
+              setEditTitle={setEditTitle}
+              editUrl={editUrl}
+              setEditUrl={setEditUrl}
+              editDescription={editDescription}
+              setEditDescription={setEditDescription}
+            />
           </div>
         )}
       </article>

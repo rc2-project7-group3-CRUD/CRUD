@@ -2,7 +2,6 @@ import "./Panel.css";
 import { Card } from "../Panel/Card/Card";
 import { useState, useEffect } from "react";
 import CardDialog from "../CardDialog/CardDialog";
-
 export const Panel = () => {
   const [cards, setCards] = useState([]);
   const [visible, setVisible] = useState(false);
