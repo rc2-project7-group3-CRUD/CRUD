@@ -2,6 +2,7 @@ package org.factoriaf5.backend.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.factoriaf5.backend.persistence.Card;
@@ -11,9 +12,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+// import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,8 +60,31 @@ public class CardController {
     }
 
     // MÉTODO PUT
-    @PutMapping("/cards/{id}")
-    public CardResponse updateCard(@PathVariable Long id, @RequestBody CardRequest request) {
+//     @PutMapping("/cards/{id}")
+//     public CardResponse updateCard(@PathVariable Long id, @RequestBody CardRequest request) {
+//     Optional<Card> optionalCard = repository.findById(id);
+
+//     if (optionalCard.isEmpty()) {
+//         throw new CardNotFoundException("Card not found - id: " + id);
+//     }
+
+//     Card existingCard = optionalCard.get();
+
+//     // Actualiza los campos que se pueden modificar
+//     existingCard.setTitle(request.getTitle());
+//     existingCard.setUrl(request.getUrl());
+//     existingCard.setDescription(request.getDescription());
+
+//     // Guarda los cambios en la base de datos
+//     Card updatedCard = repository.save(existingCard);
+
+//     return new CardResponse(updatedCard.getId(), updatedCard.getTitle(), updatedCard.getUrl(), updatedCard.getDescription(), updatedCard.getAuthor());
+// }
+
+
+    // MÉTODO PATCH
+    @PatchMapping("/cards/{id}")
+    public CardResponse updateCardDescription(@PathVariable Long id, @RequestBody Map<String, String> request) {
     Optional<Card> optionalCard = repository.findById(id);
 
     if (optionalCard.isEmpty()) {
@@ -68,16 +93,24 @@ public class CardController {
 
     Card existingCard = optionalCard.get();
 
-    // Actualiza los campos que se pueden modificar
-    existingCard.setTitle(request.getTitle());
-    existingCard.setUrl(request.getUrl());
-    existingCard.setDescription(request.getDescription());
+    // Verifica si la solicitud contiene la clave "description" y actualiza la descripción si es así
+    if (request.containsKey("title")) {
+        existingCard.setTitle(request.get("title"));
+    }
+
+    if (request.containsKey("url")) {
+        existingCard.setUrl(request.get("url"));
+    }
+
+    if (request.containsKey("description")) {
+        existingCard.setDescription(request.get("description"));
+    }
 
     // Guarda los cambios en la base de datos
     Card updatedCard = repository.save(existingCard);
 
     return new CardResponse(updatedCard.getId(), updatedCard.getTitle(), updatedCard.getUrl(), updatedCard.getDescription(), updatedCard.getAuthor());
-}
+    }
 
     // MÉTODO DELETE
     public class CardNotFoundException extends RuntimeException {
