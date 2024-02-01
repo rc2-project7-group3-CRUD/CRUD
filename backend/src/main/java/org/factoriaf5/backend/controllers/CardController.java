@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,10 +57,29 @@ public class CardController {
         return new CardResponse(savedCard.getId(), savedCard.getTitle(), savedCard.getUrl(), savedCard.getDescription(), savedCard.getAuthor());
     }
 
-    //CREAR MÉTODO UPDATE ...
+    // MÉTODO PUT
+    @PutMapping("/cards/{id}")
+    public CardResponse updateCard(@PathVariable Long id, @RequestBody CardRequest request) {
+    Optional<Card> optionalCard = repository.findById(id);
 
-    //CREAR MÉTODO DELETE ...
+    if (optionalCard.isEmpty()) {
+        throw new CardNotFoundException("Card not found - id: " + id);
+    }
 
+    Card existingCard = optionalCard.get();
+
+    // Actualiza los campos que se pueden modificar
+    existingCard.setTitle(request.getTitle());
+    existingCard.setUrl(request.getUrl());
+    existingCard.setDescription(request.getDescription());
+
+    // Guarda los cambios en la base de datos
+    Card updatedCard = repository.save(existingCard);
+
+    return new CardResponse(updatedCard.getId(), updatedCard.getTitle(), updatedCard.getUrl(), updatedCard.getDescription(), updatedCard.getAuthor());
+}
+
+    // MÉTODO DELETE
     public class CardNotFoundException extends RuntimeException {
         public CardNotFoundException(String message) {
             super(message);

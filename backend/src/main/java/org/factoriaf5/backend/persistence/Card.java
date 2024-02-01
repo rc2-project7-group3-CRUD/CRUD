@@ -19,6 +19,18 @@ import jakarta.persistence.Table;
         String description;
         String author;
         
+        public void setTitle(String title) {
+            this.title = title;
+        }
+        
+        public void setUrl (String url) {
+            this.url= url;
+        }
+        
+        public void setDescription (String description){
+            this.description=description;
+        }
+        
         public Long getId() {
             return id;
         }
