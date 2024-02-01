@@ -9,11 +9,48 @@ import EditCardDialog from "../../EditCardDialog/EditCardDialog";
 export const Card = ({ entrada }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [randomImageIndex, setRandomImageIndex] = useState(0); // Estado para almacenar el índice de la imagen aleatoria
-  const [visible, setVisible] = useState(false);
   const [needsReload, setNeedsReload] = useState(true);
   const [editTitle, setEditTitle] = useState("");
   const [editUrl, setEditUrl] = useState("");
   const [editDescription, setEditDescription] = useState("");
+  const [dialogVisible, setDialogVisible] = useState(false);
+
+  const showEditDialog = () => {
+    setEditTitle(entrada.title);
+    setEditUrl(entrada.url);
+    setEditDescription(entrada.description);
+    setDialogVisible(true);
+  };
+
+  const hideEditDialog = () => {
+    setDialogVisible(false);
+  };
+
+  const editCard = (e) => {
+    e.preventDefault();
+
+    const url = `http://localhost:8080/cards/${entrada.id}`;
+
+    const options = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: editTitle,
+        url: editUrl,
+        description: editDescription,
+      }),
+    };
+
+    fetch(url, options).then((response) => {
+      if (response.ok) {
+        setEditTitle("");
+        setEditUrl("");
+        setEditDescription("");
+        hideEditDialog();
+        setNeedsReload(true);
+      }
+    });
+  };
   // Nombres de las imágenes en la carpeta public/images
   const imageNames = [
     "imagen1.jpg",
@@ -85,32 +122,6 @@ export const Card = ({ entrada }) => {
     });
   };
 
-  const editCard = (e) => {
-    e.preventDefault();
-
-    const url = `http://localhost:8080/cards/${entrada.id}`;
-
-    const options = {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title: editTitle,
-        url: editUrl,
-        description: editDescription,
-      }),
-    };
-
-    fetch(url, options).then((response) => {
-      if (response.ok) {
-        setEditTitle("");
-        setEditUrl("");
-        setEditDescription("");
-        setVisible(false);
-        setNeedsReload(true);
-      }
-    });
-  };
-
   return (
     <section className="cardContainer">
       <article
@@ -135,7 +146,7 @@ export const Card = ({ entrada }) => {
               LEER MAS
             </Link>
             <ul className="cardIcons">
-              <li onClick={editCard}>
+              <li onClick={showEditDialog}>
                 <IconEdit />
               </li>
               <li onClick={deleteCard}>
@@ -143,8 +154,8 @@ export const Card = ({ entrada }) => {
               </li>
             </ul>
             <EditCardDialog
-              visible={visible}
-              onHide={() => setVisible(false)}
+              visible={dialogVisible}
+              onHide={hideEditDialog}
               onSubmit={editCard}
               editTitle={editTitle}
               setEditTitle={setEditTitle}
@@ -167,3 +178,4 @@ Card.propTypes = {
     id: PropTypes.number.isRequired,
   }).isRequired,
 };
+
