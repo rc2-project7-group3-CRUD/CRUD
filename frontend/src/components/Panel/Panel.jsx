@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import CardDialog from "../CardDialog/CardDialog";
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import Fuse from 'fuse.js';
 
 export const Panel = () => {
   const [cards, setCards] = useState([]);
@@ -13,19 +14,43 @@ export const Panel = () => {
   const [newDescription, setNewDescription] = useState("");
   const [newAuthor, setNewAuthor] = useState("");
   const [needsReload, setNeedsReload] = useState(true);
+  const [search, setSearch] = useState("");
+  const [filteredCards, setFilteredCards] = useState([]);
+
 
   const URL = "http://localhost:8080/cards";
 
+
   useEffect(() => {
-    if (needsReload) {
-      fetch(URL)
-        .then((response) => response.json())
-        .then((data) => {
-          setCards(data);
-          setNeedsReload(false);
-        });
-    }
-  }, [needsReload]);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(URL);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setCards(data);
+        setFilteredCards(data); // Inicializa filteredCards con todas las tarjetas
+        setNeedsReload(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData(); // Llama a la función para obtener los datos al cargar la página
+
+      // Crear una instancia de Fuse con las tarjetas actuales y la configuración
+    const fuse = new Fuse(cards, {
+    keys: ['title', 'description', 'author'], // Campos para buscar
+    threshold: 0.8, // Umbral de similitud
+  });
+
+    // Realizar la búsqueda y establecer las tarjetas filtradas
+    const result = fuse.search(search);
+    setFilteredCards(result.map((item) => item.item));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [needsReload, search]);
+  
 
   const postCard = (e) => {
     e.preventDefault();
@@ -55,13 +80,47 @@ export const Panel = () => {
     });
   };
 
+  const handleSearch = (e) => {
+    const searchText = e.target.value;
+  
+    if (e.key === "Enter") {
+      setSearch(searchText);
+    } else {
+      if (searchText === "") {
+        // Si el campo de búsqueda está vacío, muestra todas las tarjetas
+        setFilteredCards(cards);
+      } else {
+        // Filtra las tarjetas en función del texto ingresado
+        const fuse = new Fuse(cards, {
+          keys: ['title', 'description', 'author'],
+          threshold: 0.4,
+        });
+  
+        const result = fuse.search(searchText);
+        setFilteredCards(result.map((item) => item.item));
+      }
+    }
+  };
+  
+
+  const handleButtonSearch = (value) => {
+    setSearch(value);
+  }
+
   return (
     <div className="panelContainer">
       <div className="headerPanel">
         <h2 className="textLastPosts">Últimas entradas:</h2>
         <div className="p-inputgroup flex-1">
-          <Button icon="pi pi-search" className="p-button-warning" />
-          <InputText placeholder="¿Qué estás buscando?" className="inputSearch"/>
+          <Button
+            icon="pi pi-search"
+            className="p-button-warning"
+            onClick={() => handleButtonSearch(document.querySelector('input').value)}
+            />
+          <InputText
+            onKeyDown={handleSearch}
+            placeholder="¿Qué estás buscando?"
+            className="inputSearch"/>
         </div>
       </div>
       <div className="cardsContainer">
@@ -85,7 +144,7 @@ export const Panel = () => {
           setNewAuthor={setNewAuthor}
         />
 
-        {[...cards].reverse().map((card, index) => (
+        {[...filteredCards].reverse().map((card, index) => (
           <Card key={index} entrada={card} />
         ))}
       </div>
