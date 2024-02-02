@@ -48,6 +48,7 @@ export const Card = ({ entrada }) => {
         setEditDescription("");
         hideEditDialog();
         setNeedsReload(true);
+        window.location.reload();
       }
     });
   };
