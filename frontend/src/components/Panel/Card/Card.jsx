@@ -9,6 +9,7 @@ import EditCardDialog from "../../EditCardDialog/EditCardDialog";
 export const Card = ({ entrada }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [randomImageIndex, setRandomImageIndex] = useState(0); // Estado para almacenar el índice de la imagen aleatoria
+  // eslint-disable-next-line no-unused-vars
   const [needsReload, setNeedsReload] = useState(true);
   const [editTitle, setEditTitle] = useState("");
   const [editUrl, setEditUrl] = useState("");
@@ -176,6 +177,8 @@ Card.propTypes = {
   entrada: PropTypes.shape({
     entrada: PropTypes.string,
     title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   }).isRequired,
 };

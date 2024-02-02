@@ -2,6 +2,9 @@ import "./Panel.css";
 import { Card } from "../Panel/Card/Card";
 import { useState, useEffect } from "react";
 import CardDialog from "../CardDialog/CardDialog";
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
+
 export const Panel = () => {
   const [cards, setCards] = useState([]);
   const [visible, setVisible] = useState(false);
@@ -54,7 +57,13 @@ export const Panel = () => {
 
   return (
     <div className="panelContainer">
-      <h2 className="textLastPosts">Últimas entradas:</h2>
+      <div className="headerPanel">
+        <h2 className="textLastPosts">Últimas entradas:</h2>
+        <div className="p-inputgroup flex-1">
+          <Button icon="pi pi-search" className="p-button-warning" />
+          <InputText placeholder="¿Qué estás buscando?" className="inputSearch"/>
+        </div>
+      </div>
       <div className="cardsContainer">
         <article className="cardGallery emptyCard">
           <p className="emptyCardButton" onClick={() => setVisible(true)}>
