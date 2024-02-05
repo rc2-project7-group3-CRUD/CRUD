@@ -3,6 +3,9 @@ import { Button } from "primereact/button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import CardDialog from "../CardDialog/CardDialog";
+import { Tree } from 'primereact/tree';
+import { NodeService } from '../../services/NodeService';
+import { useEffect } from "react";
 
 export const Sidebar = () => {
   const [visible, setVisible] = useState(false);
@@ -10,6 +13,12 @@ export const Sidebar = () => {
   const [newUrl, setNewUrl] = useState("");
   const [newDescription, setNewDescription] = useState("");
   const [newAuthor, setNewAuthor] = useState("");
+  const [nodes, setNodes] = useState([]);
+    const [selectedKey, setSelectedKey] = useState('');
+    
+    useEffect(() => {
+        NodeService.getTreeNodes().then((data) => setNodes(data));
+    }, []);
 
   const postCard = (e) => {
     e.preventDefault();
@@ -53,6 +62,11 @@ export const Sidebar = () => {
             onClick={() => setVisible(true)}
           />
         </div>
+        <div className="treeCategories">
+            <Tree value={nodes} selectionMode="single" selectionKeys={selectedKey} onSelectionChange={(e) => setSelectedKey(e.value)} className="w-full md:w-30rem" />
+        </div>
+      
+
       </nav>
       <CardDialog
         visible={visible}
