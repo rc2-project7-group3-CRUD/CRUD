@@ -38,6 +38,16 @@
     padding: 5px;
 }
 
+.inputSearch::placeholder {
+    color: #ffffff;
+    font-weight: 500;
+  }
+  
+  .p-inputtext {
+    color: #ffffff;
+    font-weight: 500;
+  }
+
 .cardsContainer{
     display:flex;
     flex-wrap: wrap;

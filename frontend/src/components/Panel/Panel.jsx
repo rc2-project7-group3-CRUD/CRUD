@@ -83,9 +83,9 @@ export const Panel = () => {
   const handleSearch = (e) => {
     const searchText = e.target.value;
   
-    if (e.key === "Enter") {
+    /*if (e.key === "Enter") {
       setSearch(searchText);
-    } else {
+    } else {*/
       if (searchText === "") {
         // Si el campo de búsqueda está vacío, muestra todas las tarjetas
         setFilteredCards(cards);
@@ -99,7 +99,7 @@ export const Panel = () => {
         const result = fuse.search(searchText);
         setFilteredCards(result.map((item) => item.item));
       }
-    }
+    /*}*/
   };
   
 
