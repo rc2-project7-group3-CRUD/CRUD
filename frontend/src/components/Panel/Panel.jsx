@@ -157,8 +157,8 @@ export const Panel = ({filteredCards, setFilteredCards, setCards, cards}) => {
 };
 
 Panel.propTypes = {
-    filteredCards: PropTypes.func,
+    filteredCards: PropTypes.array,
     setFilteredCards: PropTypes.func,
     setCards: PropTypes.func,
-    cards: PropTypes.func,
+    cards: PropTypes.array,
 };

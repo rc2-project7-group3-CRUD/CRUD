@@ -1,113 +1,113 @@
 .navContainer {
-    min-height: 100vh;
-    width: 18%;
-    background-color: var(--color-darkblue);
-    padding: 40px 50px;
+  min-height: 100vh;
+  width: 18%;
+  background-color: var(--color-darkblue);
+  padding: 40px 50px;
 }
 
 .logo {
-    margin-bottom: 25px;
-    width: 100%;
+  margin-bottom: 25px;
+  width: 100%;
 }
 
 .addPost {
-    background-color: var(--color-green);
-    padding: 0.8rem 1.2rem;
-    color: var(--color-darkblue);
-    border: none;
+  background-color: var(--color-green);
+  padding: 0.8rem 1.2rem;
+  color: var(--color-darkblue);
+  border: none;
 }
 
 .card .p-button-label {
-    font-weight: 500;
-    font-size: 1rem;
+  font-weight: 500;
+  font-size: 1rem;
 }
 
 .p-dialog-header {
-    position: relative;
+  position: relative;
 }
 
 .p-dialog .p-dialog-header .p-dialog-header-icon {
-    position: absolute;
-    right: 50px;
-    top: 30px;
+  position: absolute;
+  right: 50px;
+  top: 30px;
 }
 
 .p-dialog .p-dialog-header {
-    background: none;
+  background: none;
 }
 
 .p-dialog .p-dialog-header .p-dialog-header-icon {
-    color: white;
+  color: white;
 }
 
 .p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
-    background: none;
-    border: 2px solid white;
+  background: none;
+  border: 2px solid white;
 }
 
 .p-dialog-content {
-    border-radius: 8px;
+  border-radius: 8px;
 }
 
 .cardForm {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 52px 48px 52px;
+  display: flex;
+  flex-direction: column;
+  margin: 0px 52px 48px 52px;
 }
 
 .cardHeader {
-    height: 10vh;
-    background: linear-gradient(273deg,
-            #08101b 1%,
-            #289485 67.64%,
-            #a1a26d 101.97%);
-    top: 0;
-    color: var(--color-white);
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    padding-left: 55px;
+  height: 10vh;
+  background: linear-gradient(
+    273deg,
+    #08101b 1%,
+    #289485 67.64%,
+    #a1a26d 101.97%
+  );
+  top: 0;
+  color: var(--color-white);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  padding-left: 55px;
 }
 
 .footerCard {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .cardTitle,
 .cardUrl,
 .cardDescription,
 .footerCard {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .sendPost {
-    background-color: var(--color-blue);
-    border: none;
-    padding: 10px 20px;
-    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+  background-color: var(--color-blue);
+  border: none;
+  padding: 10px 20px;
+  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .authorCard {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .footerCard .p-button-label {
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: 400;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 400;
 }
 
-.treeCategories{
-    margin-top: 20px;
+.dropdownCategories {
+  margin-top: 20px;
+ 
 }
 
-.p-tree, .p-tree-container, .p-treenode, .p-treenode-content.p-highlight, .p-treenode-icon{
-    background: none;
-    color: var(--color-white);
-}
-
-.p-treenode-icon{
-    margin-right: 5px;
+.dropdownCategories .p-inputtext {
+  color: var(--color-darkblue);
+  font-size: 14px;
+  padding: 5px;
 }

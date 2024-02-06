@@ -3,26 +3,19 @@ import { Button } from "primereact/button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import CardDialog from "../CardDialog/CardDialog";
-import { Tree } from 'primereact/tree';
-import { NodeService } from '../../services/NodeService';
-import { useEffect } from "react";
 import { Dropdown } from "primereact/dropdown";
 import PropTypes from "prop-types";
 
-
-export const Sidebar = ({ selectedCategory, categories, handleCategoryChange }) => {
+export const Sidebar = ({
+  selectedCategory,
+  categories,
+  handleCategoryChange,
+}) => {
   const [visible, setVisible] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [newUrl, setNewUrl] = useState("");
   const [newDescription, setNewDescription] = useState("");
   const [newAuthor, setNewAuthor] = useState("");
-  const [nodes, setNodes] = useState([]);
-  const [selectedKey, setSelectedKey] = useState('');
-
-    
-    useEffect(() => {
-        NodeService.getTreeNodes().then((data) => setNodes(data));
-    }, []);
 
   const postCard = (e) => {
     e.preventDefault();
@@ -66,18 +59,15 @@ export const Sidebar = ({ selectedCategory, categories, handleCategoryChange }) 
             onClick={() => setVisible(true)}
           />
         </div>
-        <div className="treeCategories">
-          <Tree value={nodes} selectionMode="single" selectionKeys={selectedKey} onSelectionChange={(e) => setSelectedKey(e.value)} className="w-full md:w-30rem" />
+        <div className="dropdownCategories">
           {/* Componente de PrimeReact para seleccionar categorias */}
           <Dropdown
             value={selectedCategory}
             options={categories}
             onChange={handleCategoryChange}
-            placeholder="Seleccione una categoría"
+            placeholder="Categorías"
           />
         </div>
-      
-
       </nav>
       <CardDialog
         visible={visible}
@@ -98,6 +88,6 @@ export const Sidebar = ({ selectedCategory, categories, handleCategoryChange }) 
 
 Sidebar.propTypes = {
   selectedCategory: PropTypes.func,
-  categories: PropTypes.func,
+  categories: PropTypes.array,
   handleCategoryChange: PropTypes.func,
 };
