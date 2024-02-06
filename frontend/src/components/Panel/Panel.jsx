@@ -5,11 +5,12 @@ import CardDialog from "../CardDialog/CardDialog";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import Fuse from "fuse.js";
-import { Dropdown } from "primereact/dropdown";
+import PropTypes from "prop-types";
 
-export const Panel = () => {
+// import { Dropdown } from "primereact/dropdown";
+
+export const Panel = ({filteredCards, setFilteredCards, setCards, cards}) => {
  
-  const [cards, setCards] = useState([]);
   const [visible, setVisible] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [newUrl, setNewUrl] = useState("");
@@ -18,19 +19,7 @@ export const Panel = () => {
   const [needsReload, setNeedsReload] = useState(true);
   const [search, setSearch] = useState("");
   // Constantes para filtrar las cartas por categorias
-  const [filteredCards, setFilteredCards] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const categories = [
-    { label: "Frontend", value: "Frontend" },
-    { label: "Backend", value: "Backend" },
-  ];
-  // Funcion para filtrar categorias
-  const handleCategoryChange = (e) => {
-    setSelectedCategory(e.value);
-    // Realizar la búsqueda de tarjetas filtradas por la categoría seleccionada
-    const filtered = cards.filter((card) => card.category === e.value);
-    setFilteredCards(filtered);
-  };
+
 
   const URL = "http://localhost:8080/cards";
 
@@ -122,13 +111,7 @@ export const Panel = () => {
     <div className="panelContainer">
       <div className="headerPanel">
         <h2 className="textLastPosts">Últimas entradas:</h2>
-        {/* Componente de PrimeReact para seleccionar categorias */}
-        <Dropdown
-          value={selectedCategory}
-          options={categories}
-          onChange={handleCategoryChange}
-          placeholder="Seleccione una categoría"
-        />
+
         <div className="p-inputgroup flex-1">
           <Button
             icon="pi pi-search"
@@ -171,4 +154,11 @@ export const Panel = () => {
       </div>
     </div>
   );
+};
+
+Panel.propTypes = {
+    filteredCards: PropTypes.func,
+    setFilteredCards: PropTypes.func,
+    setCards: PropTypes.func,
+    cards: PropTypes.func,
 };
