@@ -7,14 +7,16 @@ public class CardResponse {
         private String url;
         private String description;
         private String author;
+        private String category;
 
         //MÉTODO CONSTRUCTOR PARA CADA OBJETO "card"
-        public CardResponse(Long id, String title, String url, String description, String author) {
+        public CardResponse(Long id, String title, String url, String description, String author, String category) {
             this.id = id;
             this.title = title;
             this.url = url;
             this.description=description;
             this.author= author;
+            this.category = category;
         }
 
         /*GETTERS: Llamada a los datos del constructor, a traves de la funcion coge los datos uno a uno */
@@ -39,6 +41,10 @@ public class CardResponse {
 
         public String getAuthor () {
             return author;
+        }
+
+        public String getCategory () {
+            return category;
         }
     
 }
