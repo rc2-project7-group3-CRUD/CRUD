@@ -8,6 +8,7 @@ import Fuse from "fuse.js";
 import { Dropdown } from "primereact/dropdown";
 
 export const Panel = () => {
+ 
   const [cards, setCards] = useState([]);
   const [visible, setVisible] = useState(false);
   const [newTitle, setNewTitle] = useState("");
@@ -103,7 +104,7 @@ export const Panel = () => {
     } else {
       // Filtra las tarjetas en función del texto ingresado
       const fuse = new Fuse(cards, {
-        keys: ["title", "description", "author"],
+        keys: ["title", "description", "author", "category"],
         threshold: 0.4,
       });
 

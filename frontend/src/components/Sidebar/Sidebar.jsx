@@ -16,6 +16,7 @@ export const Sidebar = () => {
   const [nodes, setNodes] = useState([]);
     const [selectedKey, setSelectedKey] = useState('');
     
+    
     useEffect(() => {
         NodeService.getTreeNodes().then((data) => setNodes(data));
     }, []);
