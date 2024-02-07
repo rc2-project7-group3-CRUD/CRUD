@@ -1,57 +1,61 @@
-.panelContainer{
-    width: 82%;
-    background: radial-gradient(102.75% 84.43% at 83.82% 22.64%, #1E2E57 0%, #0F1628 91%);
-    padding: 94px 40px;
+.panelContainer {
+  width: 82%;
+  background: radial-gradient(
+    102.75% 84.43% at 83.82% 22.64%,
+    #1e2e57 0%,
+    #0f1628 91%
+  );
+  padding: 94px 40px;
 }
 
-.headerPanel{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.headerPanel .inputSearch::placeholder {
+  color: #ffffff;
+  font-weight: 500;
 }
 
-.textLastPosts{
-    color: #C0C0C0;
-    font-size: 18px;
-    font-weight: 500;
+.headerPanel .p-inputtext {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.headerPanel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textLastPosts {
+  color: #c0c0c0;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .p-inputgroup {
-    border: 1px solid #D9D9D9;
-    border-radius: 10px;
-    width: 400px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 400px;
 }
 
-.p-button-warning{
-    background-color: transparent;
-    border: none;
+.p-button-warning {
+  background-color: transparent;
+  border: none;
 }
 
-.p-button-hover{
-    border: none;
-    outline: none;
+.p-button-hover {
+  border: none;
+  outline: none;
 }
 
-.inputSearch{
-    background-color: transparent;
-    border: none;
-    padding: 5px;
+.inputSearch {
+  background-color: transparent;
+  border: none;
+  padding: 5px;
 }
 
-.inputSearch::placeholder {
-    color: #ffffff;
-    font-weight: 500;
-  }
-  
- .inputSearch .p-inputtext {
-    color: #ffffff;
-    font-weight: 500;
-  }
-
-.cardsContainer{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-top: 32px;
-    gap:1vw;
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 32px;
+  gap: 1vw;
 }
