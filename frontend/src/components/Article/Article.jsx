@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import "./Article.css";
 import { useEffect } from "react";
 import { useFetch } from "../../useFetch";
+import PropTypes from "prop-types";
 
-export const Article = () => {
+export const Article = ({ categories }) => {
   const { cardId } = useParams();
   const { data, error } = useFetch("http://localhost:8080/cards");
   const card = data ? data.find((card) => card.id === parseInt(cardId, 10)) : null;
@@ -18,7 +19,7 @@ export const Article = () => {
 
   return (
     <section className="mainContainer">
-      <Sidebar />
+      <Sidebar categories={categories}/>
       <div className="articleContainer">
         {card && (
           <div key={card.id}>
@@ -35,4 +36,8 @@ export const Article = () => {
       </div>
     </section>
   );
+};
+
+Article.propTypes = {
+  categories: PropTypes.array,
 };
