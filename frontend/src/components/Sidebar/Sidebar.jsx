@@ -10,6 +10,7 @@ export const Sidebar = ({
   selectedCategory,
   categories,
   handleCategoryChange,
+  handleAllCategories
 }) => {
   const [visible, setVisible] = useState(false);
   const [newTitle, setNewTitle] = useState("");
@@ -63,9 +64,15 @@ export const Sidebar = ({
           {/* Componente de PrimeReact para seleccionar categorias */}
           <Dropdown
             value={selectedCategory}
-            options={categories}
-            onChange={handleCategoryChange}
-            placeholder="Categorías"
+            options={[{ label: "Todas las categorías", value: null }, ...categories]} // Agrega la opción "Todas las categorías"
+            placeholder="Categorías"            
+            onChange= {(e) => {
+              if (e.value === null) {
+                handleAllCategories();
+              } else {
+                handleCategoryChange(e);
+              }
+            }}
           />
         </div>
       </nav>
@@ -87,7 +94,8 @@ export const Sidebar = ({
 };
 
 Sidebar.propTypes = {
-  selectedCategory: PropTypes.func,
+  selectedCategory: PropTypes.string,
   categories: PropTypes.array,
   handleCategoryChange: PropTypes.func,
+  handleAllCategories: PropTypes.func
 };

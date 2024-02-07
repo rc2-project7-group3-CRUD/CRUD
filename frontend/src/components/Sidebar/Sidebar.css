@@ -15,6 +15,7 @@
   padding: 0.8rem 1.2rem;
   color: var(--color-darkblue);
   border: none;
+  width: 100%;
 }
 
 .card .p-button-label {
@@ -101,13 +102,20 @@
   font-weight: 400;
 }
 
+.p-dropdown {
+  width: 100%;
+}
+
 .dropdownCategories {
   margin-top: 20px;
- 
 }
 
 .dropdownCategories .p-inputtext {
   color: var(--color-darkblue);
   font-size: 14px;
+  padding: 5px;
+}
+
+.p-dropdown-item {
   padding: 5px;
 }

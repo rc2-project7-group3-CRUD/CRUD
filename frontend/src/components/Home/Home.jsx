@@ -14,14 +14,20 @@ export const Home = () => {
   const categories = [
     { label: "Frontend", value: "Frontend" },
     { label: "Backend", value: "Backend" },
+    // { label: "Todas las categorías", value: null }
   ];
   
   // Funcion para filtrar categorias
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.value);
     // Realizar la búsqueda de tarjetas filtradas por la categoría seleccionada
-    const filtered = cards.filter((card) => card.category === e.value);
+    const filtered = e.value === null ? cards : cards.filter((card) => card.category === e.value);
     setFilteredCards(filtered);
+  };
+
+  const handleAllCategories = () => {
+    setSelectedCategory(null);
+    setFilteredCards(cards);
   };
   
   return (
@@ -30,6 +36,7 @@ export const Home = () => {
         selectedCategory = {selectedCategory}
         categories = {categories}
         handleCategoryChange = {handleCategoryChange}
+        handleAllCategories = {handleAllCategories}
       />
       <Panel
         setCards = {setCards}
